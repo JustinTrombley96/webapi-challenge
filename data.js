@@ -54,9 +54,15 @@ router.get('/people', (req, res) => {
 	res.status(200).json(people);
 });
 router.get('/people/chores/:id', (req, res) => {
-	const id = req.params.id;
-	if (id) {
-		res.status(200).json();
+	const personId = Number(req.params.id);
+	const choreDescription = req.body.description;
+	if (personId && !choreDescription) {
+		const chore = chores.filter(chore => chore.assignedTo === personId);
+		res.status(200).json(chore);
+	} else {
+		res.status(404).json({
+			message : 'This specific ID does not exist.',
+		});
 	}
 });
 router.post('/chores', (req, res) => {
@@ -69,7 +75,12 @@ router.post('/chores', (req, res) => {
 	}
 });
 router.put('/chores/:id', (req, res) => {
-	
+	const choreId = req.params.id;
+	if (choreId) {
+		chores.splice(choreId, req.body);
+	} else {
+		res.status(404).json({ message: 'This chore could not be changed.' });
+	}
 });
 router.delete('/chores/:id', (req, res) => {
 	const choreId = req.params.id;
@@ -77,7 +88,7 @@ router.delete('/chores/:id', (req, res) => {
 		chores.splice(choreId, 1);
 		res.status(201).json({ message: 'You have successfully deleted this chore.' });
 	} else {
-		res.stasstus(404).json({ message: 'This chore could not be deleted.' });
+		res.status(404).json({ message: 'This chore could not be deleted.' });
 	}
 });
 
