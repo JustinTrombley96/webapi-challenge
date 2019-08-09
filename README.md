@@ -40,13 +40,25 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+  Express is a web appliccation framework that sits on top of Node.js. It's pretty much react for your backend.
+
+  It adds extra functionality to Node.js such as routing, middleware and a simpler API.
+
 - [ ] What is Express Middleware?
+
+  Express Middlware adds additional functionality to your backend application. It extends the feature provided by the express framework, such as authentication and logging.
 
 - [ ] How can a client send data to an API?
 
+  Through a database.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+  A request 200 status.
+
 - [ ] What Express feature can we use to partition an application into sub-applications?
+
+  Router Middleware
 
 ## Minimum Viable Product
 
@@ -64,29 +76,29 @@ Store the data about **people** and **chores** in memory using arrays.
 
 For **people** store the following information:
 
-| Field | Data Type | Notes                                                                                 |
-| ----- | --------- | ------------------------------------------------------------------------------------- |
-| id    | number    | write code to increment the `id` every time a person is added to the **people** array |
-| name  | string    | when saving a person, validate that the client sends a name.                          |
+Field | Data Type | Notes
+----- | --------- | -------------------------------------------------------------------------------------
+id    | number    | write code to increment the `id` every time a person is added to the **people** array
+name  | string    | when saving a person, validate that the client sends a name.
 
 For **chores** store the following information:
 
-| Field       | Data Type | Notes                                                                                                       |
-| ----------- | --------- | ----------------------------------------------------------------------------------------------------------- |
-| id          | number    | write code to increment the `id` every time a chore is added to the **chores** array                        |
-| description | string    | when saving a chore, validate that the client sends a description                                           |
-| notes       | string    | this field is optional, it is ok if the client does not provide a value for it                              |
-| assignedTo  | number    | required, stores the `id` of a person from the **people** array.                                            |
-| completed   | boolean   | used to indicate if the chore has been completed, if not provided by the client, make it `false` by default |
+Field       | Data Type | Notes
+----------- | --------- | -----------------------------------------------------------------------------------------------------------
+id          | number    | write code to increment the `id` every time a chore is added to the **chores** array
+description | string    | when saving a chore, validate that the client sends a description
+notes       | string    | this field is optional, it is ok if the client does not provide a value for it
+assignedTo  | number    | required, stores the `id` of a person from the **people** array.
+completed   | boolean   | used to indicate if the chore has been completed, if not provided by the client, make it `false` by default
 
-When saving a chore, check that there is a person with an `id` that matches the number provided in this field. Example: if trying to save a chore and `assignedTo` has the value: 3, check that the **people** array has an object with an `id` that has the value: 3. If there is no person with that `id`, do NOT save the chore to the array and return a 400 status code with a message.
+When saving a chore, check that there is a person with an `id` that matches the number provided in this field. Example: if trying to save a chore and `assignedTo` has the value: 3, check that the **people** array has an object with an `id` that has the value: 3\. If there is no person with that `id`, do NOT save the chore to the array and return a 400 status code with a message.
 
 ## Stretch Goal
 
 - [ ] Write endpoints to manage **people**.
 - [ ] Write an endpoint to find a person by id that returns an object with all the chores assigned to that person. Example:
 
-```js
+```javascript
 {
   id: 1,
   name: 'Frodo Baggins',
