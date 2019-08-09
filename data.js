@@ -48,9 +48,15 @@ let chores = [
 ];
 
 router.get('/chores', (req, res) => {
-	const completed = req.query.sortby || 'completed';
-	const response = chores.sort((a, b) => (a[completed] < b[completed] ? -1 : 1));
-	res.status(200).json(response);
+	const completed = req.query.completed || 'completed';
+	// const response = chores.sort((a, b) => (a[completed] < b[completed] ? -1 : 1));
+	if (completed) {
+		const filter = completed === 'true' ? true : false;
+		const result = chores.filter(chore => chore.completed === filter);
+		res.status(200).json(result);
+	} else {
+		res.status(200).json(chores);
+	}
 });
 router.get('/people', (req, res) => {
 	res.status(200).json(people);
