@@ -16,34 +16,34 @@ let people = [
 ];
 let chores = [
 	{
-		chore_id    : 1,
+		id          : 1,
 		description : 'Clean the Upside Down',
 		assignedTo  : 1,
-		completed   : 'false',
+		completed   : false,
 	},
 	{
-		chore_id    : 2,
+		id          : 2,
 		description : 'Buy Eggos',
 		assignedTo  : 3,
-		completed   : 'false',
+		completed   : false,
 	},
 	{
-		chore_id    : 3,
+		id          : 3,
 		description : 'Magnets',
 		assignedTo  : 2,
-		completed   : 'false',
+		completed   : false,
 	},
 	{
-		chore_id    : 4,
+		id          : 4,
 		description : 'Find Will',
 		assignedTo  : 2,
-		completed   : 'false',
+		completed   : false,
 	},
 	{
-		chore_id    : 5,
+		id          : 5,
 		description : 'Get a new shirt',
 		assignedTo  : 1,
-		completed   : 'false',
+		completed   : false,
 	},
 ];
 
@@ -56,7 +56,28 @@ router.get('/people', (req, res) => {
 router.get('/people/chores/:id', (req, res) => {
 	const id = req.params.id;
 	if (id) {
-		res.status(200).json(chores.description);
+		res.status(200).json();
+	}
+});
+router.post('/chores', (req, res) => {
+	newChore = req.body;
+	if (req.body.description && req.body.completed && req.body.id && req.body.assignedTo) {
+		chores.push(newChore);
+		res.status(200).json(newChore);
+	} else {
+		res.status(400).json({ message: 'You must have a id, description assignedTo, and completed.' });
+	}
+});
+router.put('/chores/:id', (req, res) => {
+	
+});
+router.delete('/chores/:id', (req, res) => {
+	const choreId = req.params.id;
+	if (choreId) {
+		chores.splice(choreId, 1);
+		res.status(201).json({ message: 'You have successfully deleted this chore.' });
+	} else {
+		res.stasstus(404).json({ message: 'This chore could not be deleted.' });
 	}
 });
 
