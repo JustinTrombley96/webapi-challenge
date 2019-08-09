@@ -31,7 +31,7 @@ let chores = [
 		id          : 3,
 		description : 'Magnets',
 		assignedTo  : 2,
-		completed   : false,
+		completed   : true,
 	},
 	{
 		id          : 4,
@@ -48,7 +48,9 @@ let chores = [
 ];
 
 router.get('/chores', (req, res) => {
-	res.status(200).json(chores);
+	const completed = req.query.sortby || 'completed';
+	const response = chores.sort((a, b) => (a[completed] < b[completed] ? -1 : 1));
+	res.status(200).json(response);
 });
 router.get('/people', (req, res) => {
 	res.status(200).json(people);
