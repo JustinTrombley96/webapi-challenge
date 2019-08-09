@@ -40,7 +40,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
-  Express is a web appliccation framework that sits on top of Node.js. It's pretty much react for your backend.
+  Express is a web application framework that sits on top of Node.js. It's pretty much react for your backend.
 
   It adds extra functionality to Node.js such as routing, middleware and a simpler API.
 
@@ -50,7 +50,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] How can a client send data to an API?
 
-  Through a database.
+  Through a url or request body.
 
 - [ ] What can the API return to help clients know if a request was successful?
 
