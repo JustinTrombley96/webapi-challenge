@@ -77,17 +77,22 @@ router.post('/chores', (req, res) => {
 	}
 });
 router.put('/chores/:id', (req, res) => {
-	const choreId = req.params.id;
-	if (choreId) {
-		chores.splice(choreId, req.body);
+	const choreId = Number(req.params.id);
+	req.body.id = choreId;
+	const correctId = chores.findIndex(chore => chore.id === choreId);
+	if (correctId !== -1) {
+		chores.splice(correctId, 1, req.body);
+		res.status(200).json({ message: 'You successfully changed the data.' });
 	} else {
 		res.status(404).json({ message: 'This chore could not be changed.' });
 	}
 });
 router.delete('/chores/:id', (req, res) => {
-	const choreId = req.params.id;
-	if (choreId) {
-		chores.splice(choreId, 1);
+	const choreId = Number(req.params.id);
+	req.body.id = choreId;
+	const correctId = chores.findIndex(chore => chore.id === choreId);
+	if (correctId != -1) {
+		chores.splice(correctId, 1);
 		res.status(201).json({ message: 'You have successfully deleted this chore.' });
 	} else {
 		res.status(404).json({ message: 'This chore could not be deleted.' });
